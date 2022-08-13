@@ -267,3 +267,4 @@ export const CONTRACT_ABI = [
     "type": "function"
   }
 ]
+export const MANAGER = "0x0A469bAF8DddD88fBF79D78EC3438ad3816BEE23"
