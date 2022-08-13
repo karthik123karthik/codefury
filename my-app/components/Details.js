@@ -42,7 +42,7 @@ export default function Details() {
     }
 
   return (
-     <div className='display-section bg-red-200 flex justify-around p-4 flex-row w-[80vw] text-black h-[300px] border mx-auto text-2xl'>
+     <div className='display-section bg-red-200 flex flex-col justify-around p-4 md:flex-row w-[80vw] text-black h-[300px] border mx-auto text-2xl'>
         <div  className='flex flex-col justify-center align-center p-2 numberofcontributors border w-[30%] h-[100%] bg-gray-100'>
             <h1 className='text-center mb-5'>Count of Contibutors</h1>
             <div className='w-[100%] text-center'>{ contributors.toString()}</div> 
