@@ -1,28 +1,93 @@
-// SPDX-License-Identifier : UNLICENSED ;
-//contract address =  0xEf90f6f0b32AeD0C13971Fa01f2014C9ECdd7096
-pragma solidity >=0.8.0;
+//SPDX-License-Identifier: UNLICENSED
+//contractaddress : 0xA8c2144b89788B7B24920e2706fd641cd88D02E6
+pragma solidity >=0.5.0 < 0.9.0;
 
-contract CrowdFund{
-
-    uint public numberOfInvestors;// number of investors
-    mapping(address=>bool) public isInvestor; // to check for investor
-
-    function sendEther()public payable{
-        if(!isInvestor[msg.sender]) 
-        {
-            isInvestor[msg.sender]=true;
-            numberOfInvestors++;
-        }
-        (bool sent,) = payable(address(this)).call{value:msg.value}("");
-        require(sent,"transaction failed cannot send ether");
+contract CrowdFunding{
+    mapping(address=>uint) public contributors; //contributors[msg.sender]=100
+    address public manager; 
+    uint public minimumContribution;
+    uint public deadline;
+    uint public target;
+    uint public raisedAmount;
+    uint public noOfContributors;
+    
+    struct Request{
+        string title;
+        string img;
+        string description;
+        string weblink;
+        address payable recipient;
+        uint value;
+        bool completed;
+        uint noOfVoters;
+        mapping(address=>bool) voters;
     }
+    
+    mapping(uint=>Request) public requests;
 
-    function getBalance()public view returns(uint){
+
+    uint public numRequests;
+    constructor(uint _target){
+        target=_target;
+        deadline=block.timestamp+ 5 hours; //10sec + 3600sec (60*60)
+        minimumContribution=100 wei;
+        manager=msg.sender;
+    }
+    
+    function sendEth() public payable{
+        require(block.timestamp < deadline,"Deadline has passed");
+        require(msg.value >=minimumContribution,"Minimum Contribution is not met");        
+        if(contributors[msg.sender]==0){
+            noOfContributors++;
+        }
+        contributors[msg.sender]+=msg.value;
+        raisedAmount+=msg.value;
+    }
+    function getContractBalance() public view returns(uint){
         return address(this).balance;
     }
 
-    receive()external payable{}
-    fallback()external payable{}
-
+function refund() public{
+        require(block.timestamp>deadline && raisedAmount<target,"You are not eligible for refund");
+        require(contributors[msg.sender]>0);
+        address payable user=payable(msg.sender);
+        user.transfer(contributors[msg.sender]);
+        contributors[msg.sender]=0;
+        
 }
 
+    modifier onlyManger(){
+        require(msg.sender==manager,"Only manager can calll this function");
+        _;
+    }
+    function createRequests(string memory _title,string memory _weblink,string memory _image,string memory _description,address payable _recipient,uint _value) public onlyManger{
+        Request storage newRequest = requests[numRequests];
+        numRequests++;
+        newRequest.img = _image;
+        newRequest.weblink = _weblink;
+        newRequest.title = _title;
+        newRequest.description=_description;
+        newRequest.recipient=_recipient;
+        newRequest.value=_value;
+        newRequest.completed=false;
+        newRequest.noOfVoters=0;
+    }
+
+    function voteRequest(uint _requestNo) public{
+        require(contributors[msg.sender]>0,"YOu must be contributor");
+        Request storage thisRequest=requests[_requestNo];
+        require(thisRequest.voters[msg.sender]==false,"You have already voted");
+        thisRequest.voters[msg.sender]=true;
+        thisRequest.noOfVoters++;
+    }
+
+
+    function makePayment(uint _requestNo) public onlyManger{
+        require(raisedAmount>=target);
+        Request storage thisRequest=requests[_requestNo];
+        require(thisRequest.completed==false,"The request has been completed");
+        require(thisRequest.noOfVoters > noOfContributors/2,"Majority does not support");
+        thisRequest.recipient.transfer(thisRequest.value);
+        thisRequest.completed=true;
+    }
+}

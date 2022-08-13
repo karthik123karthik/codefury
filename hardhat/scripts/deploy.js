@@ -5,10 +5,11 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 const hre = require("hardhat");
+const {ethers} = require("ethers");
 
 async function main() {
-  const FundContractFactory = await hre.ethers.getContractFactory("CrowdFund");
-  const FundContract = await FundContractFactory.deploy();
+  const FundContractFactory = await hre.ethers.getContractFactory("CrowdFunding");
+  const FundContract = await FundContractFactory.deploy(ethers.utils.parseEther("1"));
   await FundContract.deployed();
   console.log("contract address is ",FundContract.address);
 }
