@@ -10,11 +10,13 @@ export default function Navbar(){
         </div>
         <div>
             <ul>
-                <Link href="/"><a>Home</a></Link>
-                <Link href="/about"><a>About</a></Link>
+                <li><Link href="/"><a>Home</a></Link></li>
+                <li><Link href="/about"><a>About</a></Link></li>
+                <li><Link href="/"><a>Projects</a></Link></li>
+                <li><ConnectButton/></li>
             </ul>
         </div>        
-        <ConnectButton/>
+        {/* <ConnectButton/> */}
     </nav>
     )
 }
