@@ -1,8 +1,10 @@
 //SPDX-License-Identifier: UNLICENSED
-//contractaddress : 0xA8c2144b89788B7B24920e2706fd641cd88D02E6
+//contractaddress : 0xA80E270D09Fdd6613854A291c89d490F470a4dB0
 pragma solidity >=0.5.0 < 0.9.0;
 
 contract CrowdFunding{
+    event newRequests(uint id,string _title,string _weblink,string _image,string  _description,address payable _recipient,uint _value);
+    event completed(uint id);
     mapping(address=>uint) public contributors; //contributors[msg.sender]=100
     address public manager; 
     uint public minimumContribution;
@@ -22,7 +24,18 @@ contract CrowdFunding{
         uint noOfVoters;
         mapping(address=>bool) voters;
     }
+
+    struct Requestfield{
+        uint id;
+        string title;
+        string weblink;
+        string img;
+        string description;
+        address payable recipient;
+        uint value;
+    }
     
+    Requestfield [] public RequestArray;
     mapping(uint=>Request) public requests;
 
 
@@ -52,8 +65,11 @@ function refund() public{
         require(contributors[msg.sender]>0);
         address payable user=payable(msg.sender);
         user.transfer(contributors[msg.sender]);
-        contributors[msg.sender]=0;
-        
+        contributors[msg.sender]=0;        
+}
+
+function getAllRequests()public view returns(Requestfield[] memory){
+    return RequestArray;
 }
 
     modifier onlyManger(){
@@ -71,6 +87,13 @@ function refund() public{
         newRequest.value=_value;
         newRequest.completed=false;
         newRequest.noOfVoters=0;
+        RequestArray.push(Requestfield(numRequests-1,_title,_weblink,_image,_description,_recipient,_value));
+        emit newRequests(numRequests-1,_title, _weblink, _image, _description, _recipient, _value);
+    }
+
+    function getVotes(uint _requestNo)public view returns(uint){
+        Request storage thisRequest=requests[_requestNo];
+        return thisRequest.noOfVoters;
     }
 
     function voteRequest(uint _requestNo) public{
@@ -89,5 +112,6 @@ function refund() public{
         require(thisRequest.noOfVoters > noOfContributors/2,"Majority does not support");
         thisRequest.recipient.transfer(thisRequest.value);
         thisRequest.completed=true;
+        emit completed(_requestNo);
     }
 }
