@@ -11,15 +11,15 @@ export default function Home() {
    </Head>
 <div className={styles.body}>
   <Navbar/>
-<div class={styles.main}>
-<div class={styles.content}>
-    <div class={styles.up}>
+<div className={styles.main}>
+<div className={styles.content}>
+    <div className={styles.up}>
         <h1>UpStart</h1>
     </div>
-    <div class={styles.sec}><h3>Come.Trend.Grow</h3></div>
-    <div class={styles.three}><p>one stop for your startup to meet an <br/>opportunity and get a kick start</p></div>
+    <div className={styles.sec}><h3>Come.Trend.Grow</h3></div>
+    <div className={styles.three}><p>one stop for your startup to meet an <br/>opportunity and get a kick start</p></div>
 </div>
-<div class={styles.rab}>
+<div className={styles.rab}>
 <img src="./rabb.jpg"/>
 </div>
 </div>
