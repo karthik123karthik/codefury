@@ -4,6 +4,8 @@ import Head from "next/head";
 import Footer from '../components/footer';
 
 
+
+
 export default function Home() {
   return (
     <>
@@ -25,6 +27,7 @@ export default function Home() {
 </div>
 </div>
 </div>
+
 <Footer/>
 </>
 )
