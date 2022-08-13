@@ -119,3 +119,11 @@
   background-color: #000000;
   border-radius: 15px;
 }
+@media screen and (min-width : 0px) and (max-width : 1400px)
+{
+  .body {
+    background: linear-gradient(to right, rgba(7, 2, 0, 0.973), rgba(243, 0, 0, 0.966));
+   }
+   
+   
+}
