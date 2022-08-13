@@ -1,0 +1,112 @@
+
+  
+  .body {
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    background: black;
+  }
+
+  .box{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to right, rgba(7, 2, 0, 0.973), rgba(243, 0, 0, 0.966));
+  }
+  
+  .container {
+    width: 1000px;
+    height: 550px;
+    background: black;
+    padding: 20px;
+    margin: 50px auto;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-shadow: 5px 5px 10px #ddd inset, -5px -5px 10px #ddd inset;
+  }
+  
+  .container h2 {
+    background-color: black;
+    position: relative;
+    left: -40px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .first {
+    width: 200px;
+    padding: 10px 0;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(104, 126, 238);
+  }
+  
+
+  
+  .container h2 {
+    margin: 40px 0;
+    padding: 20px;
+    width: calc(100% + 80px);
+    background-color: rgb(104, 126, 238);
+  }
+  
+
+  
+  .second {
+    line-height: 1.6;
+    font-size: 18px;
+    width: 800px;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+    background: black;
+    padding: 50px 0px;
+  }
+
+  .para {
+    display: flex;
+    flex-direction: row;
+    background: black;
+
+  }
+
+  .image{
+    display: flex;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    background: black;
+  }
+
+  .image img{
+    width: 100px;
+    height:150px;
+  }
+
+.address{
+    color: white;
+    padding: 20px 0px;
+    font-size: 15px;
+}
+
+.container a{
+    display: flex;
+    background: black;
+    color: rgb(122, 171, 227);
+    align-items: center;
+    justify-content: center;
+}
+
+.like{
+    display: flex;
+    flex-direction: row;
+    background: black;
+}
+.like a{
+    padding: 0px 80px;
+    background: black;
+}
+.like img{
+    background: black;
+}

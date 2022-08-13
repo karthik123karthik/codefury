@@ -8,6 +8,8 @@ import {useContract,useSigner,useAccount} from 'wagmi';
 import { CONTRACT_ADDRESS,CONTRACT_ABI } from '../constants';
 
 
+
+
 export default function Home() {
   const { address, isConnecting, isDisconnected } = useAccount();
   
@@ -40,7 +42,11 @@ export default function Home() {
 </div>
 </div>
 </div>
+<<<<<<< HEAD
 <Form/>
+=======
+
+>>>>>>> e064562db146f09009a2eecb02cfa3ad26516514
 <Footer/>
 </>
 )
