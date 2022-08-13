@@ -1,7 +1,13 @@
-
+import styles from "../styles/Home.module.css"
 
 export default function About(){
     return (
-        <h1>hello world</h1>
+    <div className={styles.container}>
+     <ConnectButton
+    accountStatus={{
+    smallScreen: 'avatar',
+    largeScreen: 'full',
+    }}/>
+    </div>
     )
 }
