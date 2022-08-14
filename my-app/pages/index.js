@@ -42,11 +42,7 @@ export default function Home() {
 </div>
 </div>
 </div>
-<<<<<<< HEAD
 <Form/>
-=======
-
->>>>>>> e064562db146f09009a2eecb02cfa3ad26516514
 <Footer/>
 </>
 )
