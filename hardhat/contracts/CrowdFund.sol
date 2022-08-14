@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: UNLICENSED
-//contractaddress : 0xA80E270D09Fdd6613854A291c89d490F470a4dB0
+//contractaddress : 0xeCEf22DFB78EaDDA0D7Af68EEC79252077F6984a
 pragma solidity >=0.5.0 < 0.9.0;
 
 contract CrowdFunding{
@@ -42,7 +42,7 @@ contract CrowdFunding{
     uint public numRequests;
     constructor(uint _target){
         target=_target;
-        deadline=block.timestamp+ 5 hours; //10sec + 3600sec (60*60)
+        deadline=block.timestamp+ 10 hours; //10sec + 3600sec (60*60)
         minimumContribution=100 wei;
         manager=msg.sender;
     }
