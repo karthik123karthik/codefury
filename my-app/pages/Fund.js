@@ -46,8 +46,9 @@ export default function Fund() {
 
   return (
     <>
-    <Navbar/>
+    
     <div className='flex flex-col justify-between p-1  h-[100vh] w-[80vw] mx-auto  bg-black'>
+    <Navbar/>
       <div className='flex flex-col justify-center items-center align-center fund-section bg-black-500 mb-2 h-[50%] w-[100%]'>
         <h1 className=' text-5xl p-10'>Become a Contributor</h1>
         <input className='w-[50%] py-2 px-4 mb-4' value={amount} type="text" onChange={handleOnChange} placeholder='Enter the amount in Ethers' />
