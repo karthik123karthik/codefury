@@ -3,7 +3,7 @@ import { utils } from "ethers";
 import { useSigner, useContract } from "wagmi";
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../constants';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 
 export default function Fund() {
   const [amount, setAmount] = useState();
