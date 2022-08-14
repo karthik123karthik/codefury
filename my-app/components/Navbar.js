@@ -8,7 +8,7 @@ export default function Navbar(props){
     return (
     <nav id={styles.navbar}>
         <div id={styles.logo}>
-            <a href="/">UpStart</a>
+            <Link href="/">UpStart</Link>
         </div>
         <div>
             <ul>

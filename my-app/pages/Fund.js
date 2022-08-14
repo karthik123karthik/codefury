@@ -53,7 +53,7 @@ export default function Fund() {
       <div className='flex flex-col justify-center items-center align-center fund-section bg-black-500 mb-2 h-[50%] w-[100%]'>
         <h1 className=' text-5xl p-10 text-neutral-50'>Become a Contributor</h1>
         <input className='w-[50%] py-2 px-4 mb-4' value={amount} type="text" onChange={handleOnChange} placeholder='Enter the amount in Ethers' />
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[20%]" onClick={fund}>Fund</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[20%]" onClick={fund}>Fund</button>
       </div>
       <div className='info-section flex flex-row justify-around items-center bg-black-500 h-[50%] w-[100%]'>
         <div className='w-[40%] flex  flex-col justify-center   bg-white-200 h-[90%]'>
